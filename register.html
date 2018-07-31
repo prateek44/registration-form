@@ -1,0 +1,94 @@
+<html ng-app='loginForms'>
+<head>
+  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <script src="angular.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+
+  <script src="js/app.js"></script>
+  <title>Register</title>
+</head>
+  <body ng-controller="loginFormController as loginFormCtrl">
+    <div name="headsection"  class="container">
+      <section class="content" id="header">
+        <h2 class="text-capitalize">Registration form</h2>
+      </section>
+      <section class="content" id="sub-header">
+        <blockquote class="bg-faded">
+        <p class="lead text-justify">Enter The Following <strong>Registration Details<strong></small></p>
+        </blockquote>
+      </section>
+
+        <div class="progress" >
+        <div class="progress-bar" role="progressbar" aria-valuenow="{{loginFormCtrl.value}}" aria-valuemin="0" aria-valuemax="100" style="width:{{loginFormCtrl.value}}%">
+          <span class="sr-only">{{loginFormCtrl.value}}% Complete</span>
+        </div>
+        </div>
+
+
+
+    </div>
+    <div class="container" style="margin-top:30px;">
+      <form name="registrationform" ng-submit="" novalidate>
+      <div class="formgroup">
+
+        <label class="textstyle">First Name</label>
+        <input type="text" class="form-control textstyle" name="firstnames" ng-model="loginFormCtrl.firstname" ng-minlength="5" ng-required="true"
+        ng-change="loginFormCtrl.check();">
+        <p ng-show="registrationform.firstnames.$untouched " class="help-block textstyle" >firstname is required</p>
+        <p ng-show="registrationform.firstnames.$error.minlength"class="help-block textstyle">firstname must contain atleast 5 characters </p>
+
+      </div>
+      <div class="formgroup">
+        <label  for="lastname" class="textstyle">Last Name</label>
+        <input type="text" class="form-control textstyle" name="lastnames" ng-minlength="5" ng-required="true" ng-model="loginFormCtrl.lastname"
+        ng-change="loginFormCtrl.check();">
+        <p ng-show="registrationform.lastnames.$untouched" class="help-block textstyle">lastname is required</p>
+        <p ng-show="registrationform.lastnames.$error.minlength"class="help-block textstyle">lastname must contain atleast 5 characters </p>
+
+      </div>
+      <div class="formgroup">
+        <blockquote class="bg-faded">
+        <label for="email" class="textstyle">Email Id</label>
+        <input type="text" class="form-control textstyle">
+      </blockquote>
+      </div>
+      <div class="formgroup">
+        <blockquote class="bg-faded">
+        <label for="gender" class="textstyle">Gender</label>
+        <select id="gendertype" class="form-control">
+          <option>Choose</option>
+          <option value="male">male</option>
+          <option value="female">female</option>
+          <option value="other">other</option>
+        </select>
+      </blockquote>
+      <div class="form-group textstyle">
+      <label style="margin-right: 17px;">marital status</label>
+      <div class="form-check-inline">
+        <label class="form-check-label">
+          <input type="radio" >married</input>
+        </label>
+      </div>
+      <div class="form-check-inline ">
+        <label class="form-check-label">
+        <input type="radio" >unmarried</input>
+      </label>
+      </div>
+
+    </div>
+
+      <button class="btn btn-primary textstyle" type="submit">Submit </button>
+
+      </div>
+    </form>
+
+
+    </div>
+
+
+  </body>
+</html>
