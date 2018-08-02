@@ -8,6 +8,22 @@
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="js/bootstrap.min.js"></script>
 
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyBGpcf8wLU2qj_paSG5zdHdutiUz3ng6Ts",
+    authDomain: "registration-app-e72a0.firebaseapp.com",
+    databaseURL: "https://registration-app-e72a0.firebaseio.com",
+    projectId: "registration-app-e72a0",
+    storageBucket: "",
+    messagingSenderId: "584885780365"
+  };
+  firebase.initializeApp(config);
+</script>
+<!-- AngularFire -->
+<script src="https://cdn.firebase.com/libs/angularfire/2.3.0/angularfire.min.js"></script>
+
   <script src="js/app.js"></script>
   <title>Register</title>
 </head>
@@ -32,28 +48,29 @@
 
     </div>
     <div class="container" style="margin-top:30px;">
-      <form name="registrationform" ng-submit="" novalidate>
+      <form name="registrationform" ng-submit="loginFormCtrl.registerUserAPI();" novalidate>
       <div class="formgroup">
 
         <label class="textstyle">First Name</label>
         <input type="text" class="form-control textstyle" name="firstnames" ng-model="loginFormCtrl.firstname" ng-minlength="5" ng-required="true"
         ng-change="loginFormCtrl.check();">
-        <p ng-show="registrationform.firstnames.$untouched " class="help-block textstyle" >firstname is required</p>
-        <p ng-show="registrationform.firstnames.$error.minlength"class="help-block textstyle">firstname must contain atleast 5 characters </p>
+        <p ng-show="registrationform.firstnames.$error.required && registrationform.firstnames.$touched" class="help-block textstyle error" >firstname is required</p>
+        <p ng-show="registrationform.firstnames.$error.minlength"class="help-block textstyle error">firstname must contain atleast 5 characters </p>
 
       </div>
       <div class="formgroup">
-        <label  for="lastname" class="textstyle">Last Name</label>
-        <input type="text" class="form-control textstyle" name="lastnames" ng-minlength="5" ng-required="true" ng-model="loginFormCtrl.lastname"
+        <label class="textstyle">Last Name</label>
+        <input type="text" class="form-control textstyle" name="lastnames" ng-model="loginFormCtrl.lastname" ng-minlength="5" ng-required="true"
         ng-change="loginFormCtrl.check();">
-        <p ng-show="registrationform.lastnames.$untouched" class="help-block textstyle">lastname is required</p>
-        <p ng-show="registrationform.lastnames.$error.minlength"class="help-block textstyle">lastname must contain atleast 5 characters </p>
+        <p ng-show="registrationform.lastnames.$error.required && registrationform.lastnames.$touched" class="help-block textstyle error">lastname is required</p>
+        <p ng-show="registrationform.lastnames.$error.minlength"class="help-block textstyle error">lastname must contain atleast 5 characters </p>
 
       </div>
       <div class="formgroup">
         <blockquote class="bg-faded">
-        <label for="email" class="textstyle">Email Id</label>
-        <input type="text" class="form-control textstyle">
+        <label class="textstyle">Email Id</label>
+        <input type="email" name="emailid" ng-model="loginFormCtrl.email" class="form-control textstyle error" ng-required="true" ng-change="loginFormCtrl.check();>
+        <p ng-show="registrationform.emailid.$invalid && registrationform.emailid.$touched" class="help-block textstyle error">Not a valid email-id</p>
       </blockquote>
       </div>
       <div class="formgroup">
@@ -66,20 +83,17 @@
           <option value="other">other</option>
         </select>
       </blockquote>
-      <div class="form-group textstyle">
-      <label style="margin-right: 17px;">marital status</label>
-      <div class="form-check-inline">
-        <label class="form-check-label">
-          <input type="radio" >married</input>
-        </label>
+      <!--<div class="form-group textstyle">-->
+      <label style="margin-right: 17px;" class="textstyle">marital status</label>
+      <div class="radio textstyle">
+        <label><input type="radio" name="maritalstatus" checked>Married</label>
       </div>
-      <div class="form-check-inline ">
-        <label class="form-check-label">
-        <input type="radio" >unmarried</input>
-      </label>
+      <div class="radio textstyle">
+        <label ><input type="radio" name="maritalstatus" >Unmarried</label>
       </div>
 
-    </div>
+
+    <!--</div>-->
 
       <button class="btn btn-primary textstyle" type="submit">Submit </button>
 
